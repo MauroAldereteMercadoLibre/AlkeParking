@@ -10,6 +10,7 @@ data class Parking(
     fun addVehicle(vehicle: Vehicle):Boolean{
         return if(actualLimit<= vehiclesLimit){
             vehicles.add(vehicle)
+            actualLimit+=1
             true
         }else{
             false
