@@ -3,8 +3,8 @@ import java.util.*
 data class Vehicle(
     val plate: String,
     val type: VehicleType,
-    val discountCard: String? = null,
-    val checkInTime: Calendar = Calendar.getInstance()
+    val checkInTime: Calendar,
+    val discountCard: String? = null
 ) {
 
     companion object{
