@@ -3,14 +3,14 @@ data class Parking(
 ){
     //vehicles deberia ser privada?
     companion object{
-        const val vehiclesLimit = 20
-        var actualLimit=0
+        const val vacancy = 20
+        var currentOcupation=0
     }
 
     fun addVehicle(vehicle: Vehicle):Boolean{
-        return if(actualLimit<= vehiclesLimit){
+        return if(currentOcupation< vacancy){
             vehicles.add(vehicle)
-            actualLimit+=1
+            currentOcupation+=1
             true
         }else{
             false
