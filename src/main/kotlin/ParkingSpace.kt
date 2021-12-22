@@ -12,7 +12,6 @@ data class ParkingSpace(
         val autos = parking.vehicles
         for (auto in autos) {
             if (auto.plate == plate) auto.also { vehicleOut = it }
-
         }
         if(vehicleOut.plate != ""){
             val hasDc: Boolean = vehicleOut.discountCard != null
@@ -24,7 +23,7 @@ data class ParkingSpace(
         }else{
             onError()
         }
-
+        //try catch again
 
     }
 

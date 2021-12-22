@@ -23,7 +23,7 @@ fun main() {
     println(parking1.vehicles.contains(vehiculo3)) //false
 /*
     //Para probar el tiempo de salida
-    sleep(10000)
+    //sleep(10000)
 
     //Aca tengo dudas de para que le paso el vehiculo a parkingSpace ¿No deberia ser solo el parking?
     //Si es un auto tira 17 en lugar de 20 tampoco se porque... El resto esta bien.
