@@ -1,5 +1,13 @@
+package data
+
+import utils.VehicleType
+import java.util.*
+
 data class Vehicle (
-    val plate : String
+    val plate : String,
+    val vehicleType: VehicleType,
+    val checkInTime : Long,
+    val discountCard: String?=null
         ) {
 
         override fun equals(other: Any?): Boolean {
@@ -10,5 +18,7 @@ data class Vehicle (
         }
 
         override fun hashCode(): Int = this.plate.hashCode()
+
+
 
 }
