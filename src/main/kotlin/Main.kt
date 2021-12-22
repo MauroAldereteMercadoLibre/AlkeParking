@@ -51,6 +51,11 @@ fun main() {
 
 class RandomVehicleSimulator : AlkeParking(){
 
+
+    /**
+     * This function add the specified
+     * amount of almost random vehicles in the params
+     */
     fun randomlyAddedVehicles(totalVehicles: Int) {
 
         for (i in 1..totalVehicles) {
