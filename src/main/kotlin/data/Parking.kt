@@ -11,17 +11,17 @@ data class Parking(
      * @return boolean if operation is successful
      */
     fun addVehicle(vehicle: Vehicle):Boolean{
-        val disponibilidad: Any
-        val cantidadGarage = getCount()
+        val availability: Any
+        val countCars = getCount()
 
 
-        disponibilidad = if(cantidadGarage<20 && !checkDuplicate(vehicle)) {
+        availability = if(countCars<20 && !checkDuplicate(vehicle)) {
             parking.vehicles.add(vehicle)
             true
         } else {
             false
         }
-        return disponibilidad
+        return availability
     }
 
     /**
@@ -42,10 +42,14 @@ data class Parking(
         return isDuplicate
     }
 
-
+    /**
+     * @return Pair contains cars outside and accumulated profit
+     */
     fun getProfit()= Pair( cars, cash )
 
-
+    /**
+     * Print plates vehicles in console
+     */
     fun listVehicles(){
         parking.vehicles.forEach{vehicle -> println(vehicle.plate) }
     }

@@ -9,6 +9,7 @@ data class ParkingSpace(
     var vehicle: Vehicle?
 ) : AlkeParking() {
 
+    //Second constructor
     constructor() : this(null)
 
 
@@ -52,9 +53,9 @@ data class ParkingSpace(
 
     private fun returnTotal(dc: Boolean, hourDif: Int, type: VehicleType): Int {
         return if (dc) {
-            type.tarifa - ((type.tarifa * 15) / 100) + hourDif
+            type.pricePerHour - ((type.pricePerHour * 15) / 100) + hourDif
         } else {
-            type.tarifa + hourDif
+            type.pricePerHour + hourDif
         }
     }
 

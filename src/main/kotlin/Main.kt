@@ -13,10 +13,8 @@ open class AlkeParking {
     companion object {
         val parking: Parking = Parking(mutableSetOf())
         val parkingSpace = ParkingSpace()
-
         var cash = 0
         var cars = 0
-
     }
 }
 
@@ -51,6 +49,10 @@ fun main() {
 
 class RandomVehicleSimulator : AlkeParking(){
 
+    /**
+     * Add random vehicles to the parking lot
+     * @param totalVehicles
+     */
     fun randomlyAddedVehicles(totalVehicles: Int) {
 
         for (i in 1..totalVehicles) {
@@ -83,6 +85,9 @@ class RandomVehicleSimulator : AlkeParking(){
         }
     }
 
+    /**
+     * Remove a random vehicle from the parking
+     */
     fun randomlyCheckOut() {
         val theOne = parking.vehicles.random()
         parkingSpace.checkOutVehicle(theOne.plate)
