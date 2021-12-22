@@ -1,7 +1,6 @@
 package data
 
 import AlkeParking
-import Vehicle
 import utils.VehicleType
 import java.util.*
 
@@ -10,38 +9,42 @@ data class ParkingSpace(
     var vehicle: Vehicle?
 ) : AlkeParking() {
 
-    constructor() :this(null)
-
+    constructor() : this(null)
 
 
     fun checkOutVehicle(plate: String) {
 
         var vehicleOut = Vehicle("", VehicleType.CAR, Calendar.getInstance())
 
-        for (vehicle in AlkeParking.parking.vehicles) {
+        for (vehicle in parking.vehicles) {
             if (vehicle.plate == plate) vehicle.also { vehicleOut = it }
         }
-        if(vehicleOut.plate != ""){
+        if (vehicleOut.plate != "") {
             val hasDc: Boolean = vehicleOut.discountCard != null
-            //Tendria que hacer un if aca para cambiar el valor de parkedTime y asi poder randomizar tiempos
-            val fee = calculateFee(vehicleOut.type, vehicleOut.parkedTime, hasDc)
-            AlkeParking.parking.vehicles.remove(vehicleOut)
+            val totalParkingTime = if (vehicleOut.plate.contains('A', true)) {
+                (7200..86400).random().toLong()
+            } else {
+                vehicleOut.parkedTime
+            }
+            val fee = calculateFee(vehicleOut.type, totalParkingTime, hasDc)
 
-            println("tipo de vehiculo ${vehicleOut.type}")
-            onSuccess(fee)
-        }else{
+            try {
+                println("Vehicle type: ${vehicleOut.type} ${vehicleOut.plate}")
+                parking.vehicles.remove(vehicleOut)
+                onSuccess(fee)
+            } catch (e: Throwable) {
+                onError()
+            }
+        } else {
             onError()
         }
-        //try catch again
-
     }
 
     private fun calculateFee(type: VehicleType, parkedTime: Long, hasDiscountCard: Boolean): Int {
 
-        //Añadamos algo de random al tiempo
         return if (parkedTime > 7200) {
             val dif: Int = ((parkedTime.toInt() - 7200) / 900) * 5
-            returnTotal(hasDiscountCard, dif+1, type)
+            returnTotal(hasDiscountCard, dif + 1, type)
         } else {
             returnTotal(hasDiscountCard, 0, type)
         }
@@ -57,8 +60,8 @@ data class ParkingSpace(
 
     private fun onSuccess(fee: Int) {
         println("Your fee is $fee. Come back soon.")
-        ++AlkeParking.cars
-        AlkeParking.cash +=fee
+        ++cars
+        cash += fee
     }
 
     private fun onError() {

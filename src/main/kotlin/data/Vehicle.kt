@@ -1,3 +1,4 @@
+package data
 
 import utils.VehicleType
 import java.util.*

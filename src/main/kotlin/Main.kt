@@ -2,13 +2,14 @@
 import AlkeParking.Companion.parking
 import data.Parking
 import data.ParkingSpace
+import data.Vehicle
 import utils.VehicleType
 import java.util.*
 
 /**
  * This is a superClass.
  */
-open class AlkeParking() {
+open class AlkeParking {
     companion object {
         val parking: Parking = Parking(mutableSetOf())
         val parkingSpace = ParkingSpace()
@@ -20,7 +21,7 @@ open class AlkeParking() {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
 
     //Example showed in pdf
     val car = Vehicle("aaabbbccc", VehicleType.CAR, Calendar.getInstance(), "DISCOUNT_CARD_001")
@@ -38,6 +39,7 @@ fun main(args: Array<String>) {
     //Show parking
     println(parking.vehicles.toString())*/
 
+    //Main
     val rvs = RandomVehicleSimulator()
     rvs.randomlyAddedVehicles(20)
     parking.listVehicles()
@@ -47,7 +49,7 @@ fun main(args: Array<String>) {
 }
 
 
-class RandomVehicleSimulator() : AlkeParking(){
+class RandomVehicleSimulator : AlkeParking(){
 
     fun randomlyAddedVehicles(totalVehicles: Int) {
 
