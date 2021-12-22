@@ -49,16 +49,14 @@ fun main() {
 
 class RandomVehicleSimulator : AlkeParking(){
 
-<<<<<<< HEAD
     /**
      * Add random vehicles to the parking lot
-     * @param totalVehicles
-=======
+     * @param totalVehicles */
 
     /**
      * This function add the specified
      * amount of almost random vehicles in the params
->>>>>>> 32c4971a2a6db0f4b04d438bf5aa947c0ab2a129
+
      */
     fun randomlyAddedVehicles(totalVehicles: Int) {
 
