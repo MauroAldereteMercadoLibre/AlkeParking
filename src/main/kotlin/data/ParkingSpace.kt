@@ -1,3 +1,8 @@
+package data
+
+import AlkeParking
+import Vehicle
+import utils.VehicleType
 import java.util.*
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
@@ -11,16 +16,16 @@ data class ParkingSpace(
 
     fun checkOutVehicle(plate: String) {
 
-        var vehicleOut = Vehicle("",VehicleType.CAR, Calendar.getInstance())
+        var vehicleOut = Vehicle("", VehicleType.CAR, Calendar.getInstance())
 
-        for (vehicle in parking.vehicles) {
+        for (vehicle in AlkeParking.parking.vehicles) {
             if (vehicle.plate == plate) vehicle.also { vehicleOut = it }
         }
         if(vehicleOut.plate != ""){
             val hasDc: Boolean = vehicleOut.discountCard != null
             //Tendria que hacer un if aca para cambiar el valor de parkedTime y asi poder randomizar tiempos
             val fee = calculateFee(vehicleOut.type, vehicleOut.parkedTime, hasDc)
-            parking.vehicles.remove(vehicleOut)
+            AlkeParking.parking.vehicles.remove(vehicleOut)
 
             println("tipo de vehiculo ${vehicleOut.type}")
             onSuccess(fee)
@@ -52,8 +57,8 @@ data class ParkingSpace(
 
     private fun onSuccess(fee: Int) {
         println("Your fee is $fee. Come back soon.")
-        ++cars
-        cash+=fee
+        ++AlkeParking.cars
+        AlkeParking.cash +=fee
     }
 
     private fun onError() {

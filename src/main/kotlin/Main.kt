@@ -1,7 +1,8 @@
 
 import AlkeParking.Companion.parking
-import AlkeParking.Companion.parkingSpace
 import data.Parking
+import data.ParkingSpace
+import utils.VehicleType
 import java.util.*
 
 /**

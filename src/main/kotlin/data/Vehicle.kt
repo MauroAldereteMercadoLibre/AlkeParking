@@ -1,4 +1,5 @@
 
+import utils.VehicleType
 import java.util.*
 
 data class Vehicle(
