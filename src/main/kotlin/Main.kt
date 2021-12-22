@@ -13,7 +13,6 @@ open class AlkeParking(){
         val parking: Parking = Parking(mutableSetOf())
         val parkingSpace = ParkingSpace()
     }
-
 }
 
 
