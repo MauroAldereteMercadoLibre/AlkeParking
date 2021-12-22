@@ -1,7 +1,7 @@
 package data
 
 import AlkeParking
-import data.Vehicle
+import Vehicle
 
 data class Parking(
     val vehicles : MutableSet<Vehicle>
@@ -16,15 +16,11 @@ data class Parking(
         var cantidadGarage = getCount()
 
         //Condicional que chequea si es duplicada la patente y si hay espacio en parking.
-        if(cantidadGarage<=20 && !checkDuplicate(vehicle)) {
+        if(cantidadGarage<20 && !checkDuplicate(vehicle)) {
             parking.vehicles.add(vehicle)
             disponibilidad=true
-            println("Welcome to the AlkeParking!")
-
         } else {
             disponibilidad=false
-            println("Sorry, the check-in failed.")
-
         }
         return disponibilidad
     }
@@ -45,6 +41,14 @@ data class Parking(
             isDuplicate = vehiclePut.hashCode().equals(vehicle.hashCode())
         }
         return isDuplicate
+    }
+
+
+    fun getProfit()= Pair( cars, cash )
+
+
+    fun listVehicles(){
+        parking.vehicles.forEach{vehicle -> println(vehicle.plate) }
     }
 
 }
