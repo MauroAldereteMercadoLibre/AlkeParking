@@ -43,8 +43,8 @@ data class ParkingSpace(
     private fun calculateFee(type: VehicleType, parkedTime: Long, hasDiscountCard: Boolean): Int {
 
         return if (parkedTime > 7200) {
-            val dif: Int = ((parkedTime.toInt() - 7200) / 900) * 5
-            returnTotal(hasDiscountCard, dif + 1, type)
+            val dif: Int = ((parkedTime.toInt() - 7200) / 900)
+            returnTotal(hasDiscountCard, (dif + 1)*5, type)
         } else {
             returnTotal(hasDiscountCard, 0, type)
         }

@@ -16,7 +16,6 @@ open class AlkeParking {
 
         var cash = 0
         var cars = 0
-
     }
 }
 
@@ -41,10 +40,11 @@ fun main() {
 
     //Main
     val rvs = RandomVehicleSimulator()
-    rvs.randomlyAddedVehicles(20)
+    rvs.randomlyAddedVehicles(21)
     parking.listVehicles()
     rvs.randomlyCheckOut()
-    println(parking.getProfit().toString())
+    rvs.randomlyCheckOut()
+    println("Total Check out: ${parking.getProfit().first} | Total Profits: ${parking.getProfit().second}")
 
 }
 
@@ -80,6 +80,7 @@ class RandomVehicleSimulator : AlkeParking(){
             } else {
                 Vehicle("$plateLetters$plateNum", type, Calendar.getInstance())
             }
+            //
             if (parking.addVehicle(vehicle)) {
                 println("Welcome to AlkeParking!")
             } else {
@@ -89,6 +90,7 @@ class RandomVehicleSimulator : AlkeParking(){
     }
 
     fun randomlyCheckOut() {
+        //
         val theOne = parking.vehicles.random()
         parkingSpace.checkOutVehicle(theOne.plate)
     }
