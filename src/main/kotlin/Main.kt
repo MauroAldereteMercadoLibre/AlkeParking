@@ -22,28 +22,10 @@ open class AlkeParking {
 
 fun main() {
 
-    //Example showed in pdf
-    val car = Vehicle("aaabbbccc", VehicleType.CAR, Calendar.getInstance(), "DISCOUNT_CARD_001")
-    val moto = Vehicle("aaabbccc", VehicleType.MOTORCYCLE, Calendar.getInstance())
-    val minibus = Vehicle("aaab3bccc", VehicleType.MINIBUS, Calendar.getInstance(), "DISCOUNT_CARD_002")
-    val bus = Vehicle("aaabbb4cc", VehicleType.BUS, Calendar.getInstance())
-    val autoNuevo = Vehicle("aaab3bccc", VehicleType.BUS, Calendar.getInstance())
-
-    //Example
-  /*  val resultado = parking.addVehicle(car)
-    println(resultado)
-    //Check duplicate
-    val resultado2 = parking.addVehicle(car)
-    println(resultado2)
-    //Show parking
-    println(parking.vehicles.toString())*/
-
-    //Main
     val rvs = RandomVehicleSimulator()
     rvs.randomlyAddedVehicles(21)
     parking.listVehicles()
-    rvs.randomlyCheckOut()
-    rvs.randomlyCheckOut()
+    rvs.randomlyCheckOut(1)
     println("Total Check out: ${parking.getProfit().first} | Total Profits: ${parking.getProfit().second}")
 
 }
@@ -80,18 +62,15 @@ class RandomVehicleSimulator : AlkeParking(){
             } else {
                 Vehicle("$plateLetters$plateNum", type, Calendar.getInstance())
             }
-            //
-            if (parking.addVehicle(vehicle)) {
-                println("Welcome to AlkeParking!")
-            } else {
-                println("Sorry, the check-In has failled!")
-            }
+            parking.addVehicle(vehicle)
         }
     }
 
-    fun randomlyCheckOut() {
-        //
-        val theOne = parking.vehicles.random()
-        parkingSpace.checkOutVehicle(theOne.plate)
+    fun randomlyCheckOut(totalCheckOut: Int) {
+        for(i in 0..totalCheckOut){
+            val theOne = parking.vehicles.random()
+            parkingSpace.checkOutVehicle(theOne.plate)
+        }
     }
 }
+//Faltaria agregar alguna entrada duplicada para testear eso!

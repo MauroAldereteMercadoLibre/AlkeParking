@@ -11,17 +11,18 @@ data class Parking(
      * @return boolean if operation is successful
      */
     fun addVehicle(vehicle: Vehicle):Boolean{
-        val disponibilidad: Any
-        val cantidadGarage = getCount()
+        val aviability: Any
+        val totalParked = getCount()
 
-
-        disponibilidad = if(cantidadGarage<20 && !checkDuplicate(vehicle)) {
+        aviability = if(totalParked<20 && !checkDuplicate(vehicle)) {
             parking.vehicles.add(vehicle)
+            println("Welcome to AlkeParking!")
             true
         } else {
+            println("Sorry, the check-In has failled!")
             false
         }
-        return disponibilidad
+        return aviability
     }
 
     /**
